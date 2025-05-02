@@ -1,0 +1,11 @@
+﻿  main.c
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\XuMeng\main.c(1,9): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
+      C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\XuMeng\main.c(1,9):
+      之前在命令行上声明的“_CRT_SECURE_NO_WARNINGS”
+  
+  正在生成代码
+  4 of 4 functions (100.0%) were compiled.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  XuMeng.vcxproj -> C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\x64\Release\XuMeng.exe
