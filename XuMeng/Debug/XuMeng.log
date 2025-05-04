@@ -1,2 +1,3 @@
 ﻿  main.c
-  XuMeng.vcxproj -> C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\Debug\XuMeng.exe
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(658,5): error C2100: 无法取消引用类型为“void”的操作数
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(658,8): warning C4047: “=”:“void *”与“int”的间接级别不同
