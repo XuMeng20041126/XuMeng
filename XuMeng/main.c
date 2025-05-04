@@ -651,9 +651,24 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref)
 //    printf("%p\n", pa+1);
 //
 //}
-int main() 
-{
-    int a = 10;
-    void* p = &a;//无具体类型指针,可以接收任何指针的类型地址
-    //局限性:不能改值，不能加一减一，也不能解引用
-}
+//int main() 
+//{
+//    int a = 10;
+//    void* p = &a;//无具体类型指针,可以接收任何指针的类型地址
+//    //局限性:不能改值，不能加一减一，也不能解引用
+//}
+//int main()
+//{
+//    const int a = 10;//使变量有常属性，不能被更改：叫常变量
+//    //int arr[a];//C99不支持变长数组，所以a是常量
+//    //a = 10;错误
+//    int* const p = &a;
+//    int const*  p = &a;   const int* p = &a;//这两个等价
+//    //int* p = &a;//可以改
+//    *p = 85;//但能通过指针更改
+//      const int a = 10;
+//      const int* const p = &a;  // p和*p均不可变
+//      *p = 20;               // 错误
+//       p = &b;                // 错误
+//    printf("%d\n", a);
+//}
