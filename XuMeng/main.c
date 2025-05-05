@@ -675,7 +675,7 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref)
 //}
 /*指针运算*/
 //void main()//指针加减整数  指针-指针  
-//{ 
+//{     //指针加指针没有意义
 //    char arr[6] = {1,2,3,4,5,6};
 //    int i = 0;
 //    /*for (i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
@@ -735,9 +735,33 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref)
 //    }
 //    return cut;
 //}
-void main()
-{
-    char arr[] = "abcdppppp";
-    //printf("%d\n", changdustrlen(arr));
-    printf("%zd\n", strlen("1 \0 203"));//strlen\0之前的字符个数
-}
+//void main()
+//{
+//    char arr[] = "abcdppppp";
+//    //printf("%d\n", changdustrlen(arr));
+//    printf("%zd\n", strlen("1 \0 203"));//strlen\0之前的字符个数
+//}//指针比较指针，然后遍历数组
+
+//void main() 
+//{
+//    //一个局部变量不初始化，值是随机的，全局变量默认给0
+//    //int* p = 20;//不能将整数直接赋给指针，或者赋给地址值
+//    //int* p = (int*)20;  // 正确语法：将整数20强制转换为地址
+//    //int* p;//野指针,就是没有初始化
+//    //*p = 20;//不能使用未初始化的指针，否则会成为野指针
+//}
+
+//int* n()
+//{
+//    int x = 10;
+//    return &x;
+//}
+//void main()
+//{
+//    int* p = n();//p存的是野指针
+//    *p = 5;
+//    printf("%p\n", p);
+//    printf("%d\n", *p);
+//}
+
+
