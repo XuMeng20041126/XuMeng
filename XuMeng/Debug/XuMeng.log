@@ -1,3 +1,5 @@
 ﻿  main.c
-MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 _main，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
-C:\Users\14460\Desktop\C\VS2022\xu-meng\C\Debug\XuMeng.exe : fatal error LNK1120: 1 个无法解析的外部命令
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(671,24): error C2373: “p”: 重定义；不同的类型修饰符
+      C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(665,10):
+      参见“p”的声明
+  

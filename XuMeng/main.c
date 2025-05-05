@@ -662,13 +662,82 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref)
 //    const int a = 10;//使变量有常属性，不能被更改：叫常变量
 //    //int arr[a];//C99不支持变长数组，所以a是常量
 //    //a = 10;错误
-//    int* const p = &a;
-//    int const*  p = &a;   const int* p = &a;//这两个等价
 //    //int* p = &a;//可以改
-//    *p = 85;//但能通过指针更改
-//      const int a = 10;
+//    //*p = 85;//但能通过指针更改
+// 
+//    //int* const p = &a;//不能更改指针指向
+//    //int const*  p = &a;   const int* p = &a;//这两个等价，不能改变指针指向的值
+//    //  const int a = 10;
 //      const int* const p = &a;  // p和*p均不可变
 //      *p = 20;               // 错误
-//       p = &b;                // 错误
+//      p = &b;                // 错误
 //    printf("%d\n", a);
 //}
+/*指针运算*/
+//void main()//指针加减整数  指针-指针  
+//{ 
+//    char arr[6] = {1,2,3,4,5,6};
+//    int i = 0;
+//    /*for (i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+//    {
+//        printf("%d ", arr[i]);
+//    }*/
+//    char* p= &arr[0];
+//    for (i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+//    {
+//        printf("%d ",*(p+i));//p++
+//
+//    }
+//    printf("\n");
+//    for (i = sizeof(arr) / sizeof(arr[0])-1; i >= 0 ; i--)//反转数组
+//    {
+//        printf("%d ", *(p + i));
+//
+//    }
+//    //指针类型决定了解引用的权限，数组在内存中是连续存放的
+//}
+// 指针-指针
+//size_t changdustrlen(char* p)
+//{
+//    char* chang = p;
+//    char* end = p;
+//    while (*end != '\0')
+//    {
+//        end++;
+//    }
+//    return end - chang;
+//}
+//int changdustrlen(char arr[])
+//{
+//    int i = 0, cut = 0;
+//    while (1)
+//    {
+//        if (arr[i] != '\0')
+//        {
+//            cut++;
+//            i++;
+//        }
+//        else
+//            break;
+//    }
+//    return cut;
+//}
+//size_t changdustrlen(char* p)
+//{
+//    size_t cut = 0;
+//    while (*p != '0')//\0就是0
+//    {
+//        /*if (*p != '\0')
+//        {*/
+//            cut++;
+//            p++;
+//        //}
+//    }
+//    return cut;
+//}
+void main()
+{
+    char arr[] = "abcdppppp";
+    //printf("%d\n", changdustrlen(arr));
+    printf("%zd\n", strlen("1 \0 203"));//strlen\0之前的字符个数
+}
