@@ -763,5 +763,29 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref)
 //    printf("%p\n", p);
 //    printf("%d\n", *p);
 //}
+//void main()
+//{
+//    int a = 10;
+//    int* p = NULL;//空指针
+//    p = &a;
+//    *p = 2;
+//    //p = NULL;
+//    if (p != NULL)
+//    {
+//        *p = 200;
+//    }
+//    printf("%d\n", *p);
+//}
 
+//#define NDEBUG  //有这条语句后不使用 assert
+//#include <assert.h> 
+//int main()
+//{
+//    int* p = NULL;
+//    assert(p != NULL);//断言，Debug有效
+//    return 0;
+//}
+int main() {
+    char arr[] = "ni hao";
 
+}
