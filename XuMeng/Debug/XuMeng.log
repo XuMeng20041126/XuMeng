@@ -1,5 +1,2 @@
 ﻿  main.c
-C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(671,24): error C2373: “p”: 重定义；不同的类型修饰符
-      C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(665,10):
-      参见“p”的声明
-  
+  XuMeng.vcxproj -> C:\Users\14460\Desktop\C\VS2022\xu-meng\C\Debug\XuMeng.exe

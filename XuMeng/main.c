@@ -785,7 +785,27 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref)
 //    assert(p != NULL);//断言，Debug有效
 //    return 0;
 //}
-int main() {
-    char arr[] = "ni hao";
+//int main() //在x86环境下地址是4个字节，在x64环境下地址是8个字节
+//{
+//    char arr[] = "ni hao";//数组名是首元素的地址
+//    char* p = &arr[0];//地址加减是加减的类型字节
+//    printf("%d\n", sizeof(arr));//这是一个例外，计算的是整个数组的大小
+//    printf("&arr = %p\n", &arr);//这是第二个例外,&的是整个数组的首地址，步长为整个数组
+//    printf("&arr+1 = %p\n", &arr+1);
+//
+//    printf("arr = %p\n", arr);//传数组名，会自动退化为首元素的地址
+//    printf("arr+1 = %p\n", arr+1);//传数组名，会自动退化为首元素的地址
+//
+//    printf("&arr[0] = %p\n", &arr[0]);
+//    printf("&arr[0]+1 = %p\n", &arr[0]+1);
+//    return 0;
+//}
 
-}
+//int main()//*(arr+i)<==>arr[i],C语言编译器会将右边的转换为左边的
+//{         //方括号只是个操作符，arr[i]和i[arr]等价
+//    int const arr[2] = { 1,2 };//指针效率高与普通执行效率
+//    const int i = 0;
+//    printf("%d\n", i[arr]);//指针访问数组好
+//    return 0;
+//}
+
