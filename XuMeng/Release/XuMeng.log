@@ -1,8 +1,10 @@
 ﻿  add.c
   main.c
-  正在生成代码
-  3 of 4 functions (75.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  已完成代码的生成
-  XuMeng.vcxproj -> C:\Users\14460\Desktop\C\VS2022\xu-meng\C\Release\XuMeng.exe
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1043,5): warning C4391: “int div(int,int)”: 不正确的内部函数返回类型，应为“struct”
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1043,5): warning C4273: “div”: dll 链接不一致
+      C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1044,1):
+      参见“div”的前一个定义
+  
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1043,5): error C2169: “div”: 内部函数，不能定义
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1064,20): warning C4566: 由通用字符名称“\u2F0A”表示的字符不能在当前代码页(936)中表示出来
+C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1075,20): warning C4566: 由通用字符名称“\u2F0A”表示的字符不能在当前代码页(936)中表示出来

@@ -975,23 +975,108 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 //}
 /*    二维数组 */
 
-void test(int(*a)[5], int r, int c)//数组指针来接收  int a[3][5]
-{
-     int i = 0;
-    int j = 0;
+//void test(int(*a)[5], int r, int c)//数组指针来接收  int a[3][5]
+//{
+//     int i = 0;
+//    int j = 0;
+//
+//    for (i = 0; i < r; i++)
+//      {
+//        for (j = 0; j < c; j++)
+//          {
+//             printf("%d ", a[i][j]);//a[i][j]  (*(a+i))[j]  (*(a[i])+j)  *(*(a+i)+j)
+//          }
+//        printf("\n");
+//      }
+// }
+// int main(void)
+//{
+//     int arr[3][5] = { {1,2,3,4,5}, {2,3,4,5,6},{3,4,5,6,7} };
+//     test(arr, 3, 5);//arr是第一行的地址，不是首元素的地址
+//     return 0;
+// }
 
-    for (i = 0; i < r; i++)
-      {
-        for (j = 0; j < c; j++)
-          {
-             printf("%d ", a[i][j]);//a[i][j]  (*(a+i))[j]  (*(a[i])+j)
-          }
-        printf("\n");
-      }
- }
- int main(void)
-{
-     int arr[3][5] = { {1,2,3,4,5}, {2,3,4,5,6},{3,4,5,6,7} };
-     test(arr, 3, 5);//arr是第一行的地址，不是首元素的地址
-     return 0;
- }
+/*    函数指针  */
+//int ajj(int x, int y)
+//{
+//    return x - y;
+//}
+//int main()
+//{
+//    //int arr[5] = { 0 };
+//    //int (*p1)[5] = &arr;
+//    printf("%p\n", &ajj);//ajj函数名和&ajj没有任何区别
+//    printf("%p", ajj);
+//    int (*p1)(int, int) = &ajj;//函数指针   
+//    //int (*p1)(int x, int y) = &ajj;//这样写也可以
+//    int ac = (*p1)(3, 4);//这样调用
+//    //int ac = p1(3, 4);//也可以不写
+//    printf("%d", ac);
+//  /*  (*(void (*)())0)(); 强制类型转换：将数值 0 转换为一个函数指针（指向返回值为 void 且无参数的函数）
+//        解引用指针：获取该地址处的 “函数”
+//        调用函数：执行该地址处的代码*/
+// //void (*signal(int , void(*)(int)))(int);
+//    return 0;
+//}
+//typedef int(*parr_t)[6];//数组指针只能这样，函数指针也只能这样
+////typedef int(*)[6] parr_t;//不能这样
+//int main()
+//{
+//    int arr[6] = { 0 };
+//    int (*p)[6] = &arr;
+//    parr_t p2 = &arr;
+//    return 0;
+//}
+
+//int add(int a, int b)
+//{
+//    return a + b;
+//}
+//int sub(int a, int b)
+//{
+//    return a - b;
+//}
+//int mul(int a, int b)
+//{
+//    return a * b;
+//}
+//int div(int a, int b)
+//{
+//    return a / b;
+//}
+//int main()
+//{
+//    int x, y;
+//    int input = 1;
+//    int ret = 0;
+//    int(*p[5])(int x, int y) = { 0, add, sub, mul, div }; //转移表函数指针数组
+//    do
+//    {
+//        printf("*************************\n");
+//        printf(" 1:add 2:sub \n");
+//        printf(" 3:mul 4:div \n");
+//        printf(" 0:exit \n");
+//        printf("*************************\n");
+//        printf("请选择：");
+//        scanf("%d", &input);
+//        if ((input <= 4 && input >= 1))
+//        {
+//            printf("输⼊操作数：");
+//            scanf("%d %d", &x, &y);
+//            ret = (*p[input])(x, y);
+//            printf("ret = %d\n", ret);
+//        }
+//        else if (input == 0)
+//        {
+//            printf("退出计算器\n");
+//        }
+//        else
+//        {
+//            printf("输⼊有误\n");
+//        }
+//    } while (input);
+//    return 0;
+//}
+/*    回调函数   */
+//把函数的指针（地址）作为参数传递给另⼀个函数，当这个指针被⽤来调⽤其所指向的函数
+//时，被调⽤的函数就是回调函数。
