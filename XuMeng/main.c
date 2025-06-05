@@ -966,3 +966,32 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 
 /*    数组指针  */
 
+//int main()
+//{
+//    char* arr[5] = {1,2,3,4,5};
+//    char* (*p1)[5] = &arr;
+//    *((*p1)[1]);//用法对不对
+//    return 0;
+//}
+/*    二维数组 */
+
+void test(int(*a)[5], int r, int c)//数组指针来接收  int a[3][5]
+{
+     int i = 0;
+    int j = 0;
+
+    for (i = 0; i < r; i++)
+      {
+        for (j = 0; j < c; j++)
+          {
+             printf("%d ", a[i][j]);//a[i][j]  (*(a+i))[j]  (*(a[i])+j)
+          }
+        printf("\n");
+      }
+ }
+ int main(void)
+{
+     int arr[3][5] = { {1,2,3,4,5}, {2,3,4,5,6},{3,4,5,6,7} };
+     test(arr, 3, 5);//arr是第一行的地址，不是首元素的地址
+     return 0;
+ }
