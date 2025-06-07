@@ -1,6 +1,4 @@
-﻿  add.c
-  main.c
-  正在生成代码...
+﻿  main.c
 C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1,9): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
       C:\Users\14460\Desktop\C\VS2022\xu-meng\C\XuMeng\main.c(1,9):
       之前在命令行上声明的“_CRT_SECURE_NO_WARNINGS”

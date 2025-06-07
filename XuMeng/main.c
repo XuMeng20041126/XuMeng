@@ -1022,9 +1022,10 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 ////typedef int(*)[6] parr_t;//不能这样
 //int main()
 //{
-//    int arr[6] = { 0 };
-//    int (*p)[6] = &arr;
-//    parr_t p2 = &arr;
+//    int* arr[6] = { 0 };
+//    int*(*p)[6] = &arr;
+//    //int (*p)[6] = &arr;
+//    //parr_t p2 = &arr;
 //    return 0;
 //}
 
@@ -1231,3 +1232,109 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 //
 //    return 0;
 //}
+//int main()
+//{
+//    int a = 10;
+//    printf("%zd\n", sizeof(a));//sizeof是操作符，不是函数
+//    printf("%zd\n", sizeof a);//找变量占空间的大小，单位字节，与内容无关
+//    printf("%zd\n", sizeof(int*));//一样
+//    char arr1[3] = { 'a', 'b', 'c' };
+//    char arr2[] = "abc";
+//    printf("%zd\n", strlen(arr1));//strlen是函数，只能求字符串长度
+//    printf("%zd\n", strlen(arr2));
+//    printf("%zd\n", sizeof(arr1));//数组占的空间
+//    return 0;
+//}
+
+//int main()
+//{
+//    // 一维整型数组
+//    int a[] = { 1,2,3,4 };
+//    printf("%d\n", sizeof(a));         // 数组总大小：4*4=16字节
+//    printf("%d\n", sizeof(a + 0));       // 指针大小：4/8字节（数组退化为int*）
+//    printf("%d\n", sizeof(*a));        // 首元素大小：4字节（int）
+//    printf("%d\n", sizeof(a + 1));       // 指针大小：4/8字节（指向a[1]）
+//    printf("%d\n", sizeof(a[1]));      // 元素大小：4字节（int）
+//    printf("%d\n", sizeof(&a));        // 数组指针大小：4/8字节（int(*)[4]）
+//    printf("%d\n", sizeof(*&a));       // 等价于sizeof(a)：16字节
+//    printf("%d\n", sizeof(&a + 1));      // 指针大小：4/8字节（跳过整个数组）
+//    printf("%d\n", sizeof(&a[0]));     // 指针大小：4/8字节（指向a[0]）
+//    printf("%d\n", sizeof(&a[0] + 1));   // 指针大小：4/8字节（指向a[1]）
+//
+//    // 字符数组（无终止符）
+//    char arr1[] = { 'a','b','c','d','e','f' };
+//    printf("%d\n", sizeof(arr1));      // 数组大小：6字节（无终止符）
+//    printf("%d\n", sizeof(arr1 + 0));    // 指针大小：4/8字节（char*）
+//    printf("%d\n", sizeof(*arr1));     // 元素大小：1字节（char）
+//    printf("%d\n", sizeof(arr1[1]));   // 元素大小：1字节（char）
+//    printf("%d\n", sizeof(&arr1));     // 数组指针大小：4/8字节（char(*)[6]）
+//    printf("%d\n", sizeof(&arr1 + 1));   // 指针大小：4/8字节（跳过整个数组）
+//    printf("%d\n", sizeof(&arr1[0] + 1)); // 指针大小：4/8字节（指向'b'）
+//
+//    // 字符数组的strlen（危险！无终止符）
+//    printf("%d\n", strlen(arr1));      // 未定义行为！继续扫描直到遇到'\0'
+//    printf("%d\n", strlen(arr1 + 0));    // 同上
+//    // printf("%d\n", strlen(*arr1));    // 错误！传入char('a')，非指针
+//    // printf("%d\n", strlen(arr1[1]));  // 错误！同上
+//    printf("%d\n", (int)strlen((char*)&arr1)); // 等价于strlen(arr1)
+//    printf("%d\n", (int)strlen((char*)&arr1 + 1)); // 未定义！跳过数组后的内存
+//    printf("%d\n", strlen(&arr1[0] + 1)); // 未定义！从'b'开始扫描
+//
+//    // 字符串字面量（自动添加终止符）
+//    char arr2[] = "abcdef";
+//    printf("%d\n", sizeof(arr2));      // 数组大小：7字节（含'\0'）
+//    printf("%d\n", sizeof(arr2 + 0));    // 指针大小：4/8字节（char*）
+//    printf("%d\n", sizeof(*arr2));     // 元素大小：1字节（char）
+//    printf("%d\n", sizeof(arr2[1]));   // 元素大小：1字节（char）
+//    printf("%d\n", sizeof(&arr2));     // 数组指针大小：4/8字节（char(*)[7]）
+//    printf("%d\n", sizeof(&arr2 + 1));   // 指针大小：4/8字节（跳过整个数组）
+//    printf("%d\n", sizeof(&arr2[0] + 1)); // 指针大小：4/8字节（指向'b'）
+//
+//    // 字符串字面量的strlen
+//    printf("%d\n", strlen(arr2));      // 6（不包含'\0'）
+//    printf("%d\n", strlen(arr2 + 0));    // 6（从'a'开始）
+//    // printf("%d\n", strlen(*arr2));    // 错误！传入char('a')
+//    // printf("%d\n", strlen(arr2[1]));  // 错误！传入char('b')
+//    printf("%d\n", (int)strlen((char*)&arr2)); // 6（等价于strlen(arr2)）
+//    printf("%d\n", (int)strlen((char*)&arr2 + 1)); // 未定义！跳过数组后的内存
+//    printf("%d\n", strlen(&arr2[0] + 1)); // 5（从'b'到'\0'共5个字符）
+//
+//    // 字符指针指向字符串常量
+//    char* p = "abcdef";
+//    printf("%d\n", sizeof(p));         // 指针大小：4/8字节（char*）
+//    printf("%d\n", sizeof(p + 1));       // 指针大小：4/8字节（指向'b'）
+//    printf("%d\n", sizeof(*p));        // 元素大小：1字节（char）
+//    printf("%d\n", sizeof(p[0]));      // 元素大小：1字节（char）
+//    printf("%d\n", sizeof(&p));        // 指针的指针：4/8字节（char**）
+//    printf("%d\n", sizeof(&p + 1));      // 指针大小：4/8字节（跳过p后的地址）
+//    printf("%d\n", sizeof(&p[0] + 1));   // 指针大小：4/8字节（指向'b'）
+//
+//    // 字符指针的strlen
+//    printf("%d\n", strlen(p));         // 6（字符串长度）
+//    printf("%d\n", strlen(p + 1));       // 5（从'b'开始）
+//    // printf("%d\n", strlen(*p));      // 错误！传入char('a')
+//    // printf("%d\n", strlen(p[0]));    // 错误！传入char('a')
+//    printf("%d\n", strlen(&p));        // 未定义！p的地址不是字符串起始
+//    printf("%d\n", strlen(&p + 1));      // 未定义！p后的内存
+//    printf("%d\n", strlen(&p[0] + 1));   // 5（从'b'开始）
+//
+//    // 二维数组
+//    int a2[3][4] = { 0 };
+//    printf("%d\n", sizeof(a2));        // 数组总大小：3*4*4=48字节
+//    printf("%d\n", sizeof(a2[0][0]));  // 元素大小：4字节（int）
+//    printf("%d\n", sizeof(a2[0]));     // 第一行大小：4*4=16字节（int[4]）
+//    printf("%d\n", sizeof(a2[0] + 1));   // 指针大小：4/8字节（指向a2[0][1]）
+//    printf("%d\n", sizeof(*(a2[0] + 1))); // 元素大小：4字节（a2[0][1]）
+//    printf("%d\n", sizeof(a2 + 1));      // 指针大小：4/8字节（指向第二行）
+//    printf("%d\n", sizeof(*(a2 + 1)));   // 第二行大小：16字节（int[4]）
+//    printf("%d\n", sizeof(&a2[0] + 1));  // 指针大小：4/8字节（指向第二行）
+//    printf("%d\n", sizeof(*(&a2[0] + 1))); // 第二行大小：16字节（int[4]）
+//    printf("%d\n", sizeof(*a2));       // 第一行大小：16字节（等价于a2[0]）
+//    printf("%d\n", sizeof(a2[3]));     // 16字节（编译时确定，不检查越界）
+//
+//    return 0;
+//}
+int main()
+{
+
+}
