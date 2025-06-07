@@ -1080,3 +1080,154 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 /*    回调函数   */
 //把函数的指针（地址）作为参数传递给另⼀个函数，当这个指针被⽤来调⽤其所指向的函数
 //时，被调⽤的函数就是回调函数。
+//qsort函数，C语言中的库函数，用来排序，底层是快速排序
+//int int_cmp(const void* p1, const void* p2)
+//{
+//    return (*(int*)p1 - *(int*)p2);//
+//}
+//int main()
+//{
+//    int arr[] = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 0 };
+//    int i = 0;
+//
+//    qsort(arr, sizeof(arr) / sizeof(arr[0]), sizeof(int), int_cmp);//C语言函数
+//    for (i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+//    {
+//        printf("%d ", arr[i]);
+//    }
+//    printf("\n");
+//    return 0;
+//}
+//struct St //学⽣
+//{
+//    char name[20];//名字
+//    int age;//年龄
+//};
+//int main()//结构访问操作符，只有这两个
+//{
+//    struct St arr = { "nihao",20 };
+//    printf("%s %d\n ", arr.name, arr.age);//直接访问
+//    struct St* p = &arr;
+//    printf("%s %d\n ", p->name, p->age);//结构体指针访问
+//}
+//struct Stu //学⽣
+//{
+//    char name[20];//名字
+//    int age;//年龄
+//};
+////假设按照年龄来⽐较
+//int cmp_stu_by_age(const void* e1, const void* e2)
+//{
+//    return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+//}
+////strcmp - 是库函数，是专⻔⽤来⽐较两个字符串的⼤⼩的
+////假设按照名字来⽐较
+//int cmp_stu_by_name(const void* e1, const void* e2)
+//{
+//    return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);//字符串比较字符串是从ASCLL大小依次比较
+//}
+////按照年龄来排序，默认升序，降序将相减的变量调换位置
+//void test2()
+//{
+//    struct Stu s[] = { {"zhangsan", 20}, {"lisi", 30}, {"wangwu", 15} };
+//    int sz = sizeof(s) / sizeof(s[0]);
+//    qsort(s, sz, sizeof(s[0]), cmp_stu_by_age);
+//}
+////按照名字来排序
+//void test3()
+//{
+//    struct Stu s[] = { {"zhangsan", 20}, {"lisi", 30}, {"wangwu", 15} };
+//    int sz = sizeof(s) / sizeof(s[0]);
+//    qsort(s, sz, sizeof(s[0]), cmp_stu_by_name);
+//}
+//int main()
+//{
+//    test2();
+//    test3();
+//    return 0;
+//}
+         
+// 整数比较函数，用于qsort或自定义排序算法
+// 参数：p1和p2是指向要比较的整数的指针（类型为const void*以支持任意类型）
+// 返回值：
+//   - 负数：如果p1指向的整数小于p2指向的整数
+//   - 零：如果两个整数相等
+//   - 正数：如果p1指向的整数大于p2指向的整数
+//int int_cmp(const void* p1, const void* p2)
+//{
+//    // 将const void*类型的指针转换为const int*类型，然后解引用获取整数值
+//    return (*(const int*)p1 - *(const int*)p2);
+//}
+//
+//// 通用内存交换函数，用于交换两个任意类型的数据块
+//// 参数：
+////   p1, p2：指向要交换的两个数据块的指针
+////   size：每个数据块的大小（以字节为单位）
+//void _swap(void* p1, void* p2, int size)
+//{
+//    // 使用char*指针（1字节）逐字节交换两个数据块的内容
+//    for (int i = 0; i < size; i++)
+//    {
+//        char tmp = *((char*)p1 + i);          // 保存p1位置的当前字节
+//        *((char*)p1 + i) = *((char*)p2 + i);  // 将p2位置的字节复制到p1
+//        *((char*)p2 + i) = tmp;               // 将保存的字节复制到p2
+//    }
+//}
+//
+//// 通用冒泡排序函数，可以对任意类型的数组进行排序
+//// 参数：
+////   base：指向数组起始位置的指针（类型为void*以支持任意类型）
+////   count：数组中元素的数量
+////   size：每个元素的大小（以字节为单位）
+////   cmp：比较函数指针，用于确定元素的顺序
+//void bubble(void* base, int count, int size, int(*cmp)(const void*, const void*))
+//{
+//    // 冒泡排序的外层循环，控制排序的轮数
+//    for (int i = 0; i < count - 1; i++)
+//    {
+//        // 冒泡排序的内层循环，每轮比较相邻元素并交换顺序错误的元素
+//        for (int j = 0; j < count - i - 1; j++)
+//        {
+//            // 计算相邻元素的地址：
+//            //   当前元素地址 = 数组基址 + j * 元素大小
+//            //   下一个元素地址 = 数组基址 + (j+1) * 元素大小
+//            void* elem1 = (char*)base + j * size;
+//            void* elem2 = (char*)base + (j + 1) * size;
+//
+//            // 使用用户提供的比较函数比较两个元素
+//            // 如果返回值大于0，表示elem1应该排在elem2后面
+//            if (cmp(elem1, elem2) > 0)
+//            {
+//                // 交换这两个元素的位置
+//                _swap(elem1, elem2, size);
+//            }
+//        }
+//    }
+//}
+//
+//// 主函数：程序入口点
+//int main()
+//{
+//    // 待排序的整数数组
+//    int arr[] = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 0 };
+//
+//    // 计算数组元素个数
+//    int n = sizeof(arr) / sizeof(arr[0]);
+//
+//    // 调用通用冒泡排序函数对数组进行排序
+//    // 参数说明：
+//    //   arr：数组首地址
+//    //   n：元素个数
+//    //   sizeof(int)：每个元素的大小（int类型为4字节）
+//    //   int_cmp：比较函数，用于确定整数的顺序
+//    bubble(arr, n, sizeof(int), int_cmp);
+//
+//    // 输出排序后的数组
+//    for (int i = 0; i < n; i++)
+//    {
+//        printf("%d ", arr[i]);
+//    }
+//    printf("\n");
+//
+//    return 0;
+//}
