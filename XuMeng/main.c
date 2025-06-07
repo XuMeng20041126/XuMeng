@@ -921,11 +921,11 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 //    int* parr[3] = { arr1, arr2, arr3 };
 //    int i = 0;
 //    int j = 0;
-//    for (i = 0; i < 3; i++)
+//    for (i = 0; i < 3; i++) 
 //    {
 //        for (j = 0; j < 5; j++)
 //        {
-//            printf("%d ", *(parr[i] + j));//*(*(parr+i)+j)  (*(parr + i))[j]  *(parr[i] + j)   parr[i][j]
+//            printf("%d ", *(parr[i]+j));//*(*(parr+i)+j)  (*(parr + i))[j]  *(parr[i] + j)   parr[i][j]
 //        }
 //        printf("\n");
 //    }
@@ -1334,7 +1334,225 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 //
 //    return 0;
 //}
+
+
+//int main()
+//{
+//    // 字符指针数组，每个元素指向一个字符串
+//    char* c[] = { "ENTER", "NEW", "POINT", "FIRST" };
+//    /* 内存布局:
+//       c[0] ───► "ENTER"
+//       c[1] ───► "NEW"
+//       c[2] ───► "POINT"
+//       c[3] ───► "FIRST"
+//    */
+//
+//    // 二级指针数组，每个元素指向c数组的不同位置
+//    char** cp[] = { c + 3, c + 2, c + 1, c };
+//    /* 内存布局:
+//       cp[0] ───► c[3] ───► "FIRST"
+//       cp[1] ───► c[2] ───► "POINT"
+//       cp[2] ───► c[1] ───► "NEW"
+//       cp[3] ───► c[0] ───► "ENTER"
+//    */
+//
+//    // 三级指针，指向cp数组的起始位置
+//    char*** cpp = cp;
+//    /* 初始状态:
+//       cpp ───► cp[0] ───► c[3] ───► "FIRST"
+//    */
+//
+//    // 第一个printf: **++cpp
+//    printf("%s\n", **++cpp);
+//    /* 执行过程:
+//       1. ++cpp: cpp指向cp[1]
+//       2. *cpp: 即cp[1]，指向c[2]
+//       3. **cpp: 即c[2]，指向"POINT"
+//       输出: POINT
+//    */
+//
+//    // 第二个printf: *--*++cpp+3
+//    printf("%s\n", *-- * ++cpp + 3);
+//    /* 执行过程:
+//       1. ++cpp: cpp指向cp[2]
+//       2. *cpp: 即cp[2]，指向c[1]
+//       3. --*cpp: cp[2]减1，指向c[0]（原指向c[1]）
+//       4. *--*cpp: 即c[0]，指向"ENTER"
+//       5. *--*cpp+3: 从"ENTER"的第4个字符开始
+//       输出: ER
+//    */
+//
+//    // 第三个printf: *cpp[-2]+3
+//    printf("%s\n", *cpp[-2] + 3);
+//    /* 执行过程:
+//       1. cpp[-2]: 等价于*(cpp-2)，即cp[0]，指向c[3]
+//       2. *cpp[-2]: 即c[3]，指向"FIRST"
+//       3. *cpp[-2]+3: 从"FIRST"的第4个字符开始
+//       输出: ST
+//    */
+//
+//    // 第四个printf: cpp[-1][-1]+1
+//    printf("%s\n", cpp[-1][-1] + 1);
+//    /* 执行过程:
+//       1. cpp[-1]: 等价于*(cpp-1)，即cp[1]，指向c[2]
+//       2. cpp[-1][-1]: 等价于*(*(cpp-1)-1)，即c[1]-1（指向"NEW"的前一个位置）
+//          注意: 此处实际指向"ENTER"的最后一个字符'R'
+//       3. cpp[-1][-1]+1: 从'R'的下一个字符开始
+//       输出: W
+//    */
+//
+//    return 0;
+//}
+// 
+//#define M 100//最好不要加分号
+//#define H "nihao"
+//#define DEBUG_PRINT printf("file:%s\tline:%d\t \date:%s\ttime:%s\n" ,\
+// __FILE__,__LINE__ , \
+// __DATE__,__TIME__ )//\代表续航符
+//int main()
+//{
+//    int a = M;
+//    return 0;
+//}
+// 
+//#define squ(n) n*n//宏里面的参数可以任意，宏的参数可以替换内容,做简单的任务
+////#define squ(n) ((n)*(n))//这样更好，一定要括号
+//#define EAVC for(;;)
+//int main()
+//{
+//    //printf("%d",squ(2+1));//宏之后替换，不会运算，5
+//    return 0;
+//}
+//#define MAX(a,b) ((a)>(b)?(a):(b))//执行效率比函数高，还可以直接传类型
+//int main()
+//{
+//    printf("%d\n", MAX(2+1, 3+2));
+// }
+//#define PRINT(n,geshi) printf(#n"="geshi"\n",n)//#操作符是将后面参数转为字符串字面量
+//int main()
+//{
+//    int a = 0;
+//    PRINT(a, "%d");//n变成a了
+//    return 0;
+//}
+//#define VAR(name, num) name##num
+//
+//int main() {
+//    int VAR(a, 1) = 10;  // 展开为：int a1 = 10;
+//    int VAR(a, 2) = 20;  // 展开为：int a2 = 20;
+//    printf("%d, %d\n", a1, a2);  // 输出：10, 20
+//    return 0;
+//}
+//#define GENERIC_MAX(type) \
+//type type##_max(type x, type y)\
+//{ \
+// return (x>y?x:y); \
+//}
+//GENERIC_MAX(int) //替换到宏体内后int##_max ⽣成了新的符号 int_max做函数名
+//GENERIC_MAX(float) //替换到宏体内后float##_max ⽣成了新的符号 float_max做函数名
+//int main()
+//{
+//    //调⽤函数
+//    int m = int_max(2, 3);
+//    printf("%d\n", m);
+//    float fm = float_max(3.5f, 4.5f);
+//    printf("%f\n", fm);
+//    return 0;
+//}
+//#define MAX 100
+//int main()
+//{
+//    printf("%d\n", MAX);
+//#undef MAX//移除宏定义
+//    //printf("%d\n", MAX);
+//    return 0;
+//}
+
+
+//#define __DEBUG__
+//int main()
+//{
+//    int i = 0;
+//    int arr[10] = { 0 };
+//    for (i = 0; i < 10; i++)
+//    {
+//        arr[i] = i;
+//            #ifdef __DEBUG__//有这个东西就执行下一条语句，没有就不执行
+//                printf("%d\n", arr[i]);//为了观察数组是否赋值成功。 
+//            #endif //__DEBUG__
+//    }
+//    return 0;
+//}
+//int main()
+//{
+//#if 1//为真执行下面的代码
+//    printf("你好\n");
+//#endif 
+//
+//}
+
+#define M 2
+#if M<1//条件编译
 int main()
 {
+#if M>1
+    printf("你好\n");
+#endif
+    return 0;
+}
+#define M 2
+int add(int* x, int* y)
+{
+#if M>1
+    printf(".....\n");
+#endif
+    {
+    return *x + *y;
+    }
+}
+int main()
+{
+    int a = 3, b = 4;
+    printf("%d\n",add(&a, &b));
+    return 0;
+}
+#endif//跳过几行的条件编译
 
+
+
+//#define M 0
+//int main()
+//{
+//#if M == 0
+//    printf("000\n");
+//#elif M == 1
+//    printf("111\n");
+//#elif M == 2
+//    printf("222\n");
+//#else
+//    printf("333\n");
+//#endif
+//    return 0;
+//}
+
+//判断是否被定义
+//#define symbol 2
+//int main()
+//{
+////#if defined(symbol)//这两个一样，可以取反
+// #ifdef symbol
+//    printf("你好\n");
+//#endif
+//}
+
+//#ifndef MAX//没有定义就执行
+//printf("你好\n");
+//#endif
+
+int main()//
+{
+    int arr[3] = { 1,2,3 };
+    int* p1= arr;
+    printf("%d\n", *(arr+1));
+    printf("%d", p1);
 }
