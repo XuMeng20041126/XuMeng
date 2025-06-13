@@ -1404,6 +1404,9 @@ double _Complex z = 3.0 + 4.0i;  // 复数类型（需包含complex.h）[6](@ref
 //    return 0;
 //}
 // 
+// 
+// 
+//********************宏定义**********************//
 //#define M 100//最好不要加分号
 //#define H "nihao"
 //#define DEBUG_PRINT printf("file:%s\tline:%d\t \date:%s\ttime:%s\n" ,\
@@ -1519,7 +1522,6 @@ int main()
 #endif//跳过几行的条件编译
 
 
-
 //#define M 0
 //int main()
 //{
@@ -1549,10 +1551,121 @@ int main()
 //printf("你好\n");
 //#endif
 
-int main()//
+//int main() 
+//{
+//    int arr[5] = { 1, 2, 3, 4, 5 };
+//    int (*p)[5] = &arr;  // 数组指针，指向整个数组
+//
+//    printf("一维数组遍历：\n");
+//    for (int i = 0; i < 5; i++) {
+//        printf("%d ", *(*p + i));  // (*p)[i]   p[0][i]
+//    }
+//    printf("\n");
+//
+//    return 0;
+//}
+
+
+//int main() {
+//    int arr[2][3] = { {1, 2, 3}, {4, 5, 6} };
+//    int (*p)[3] = arr;  // 指向第一行的数组指针（自动退化为行指针）
+//
+//    //printf("二维数组遍历：\n");
+//    //for (int i = 0; i < 2; i++) {
+//    //    for (int j = 0; j < 3; j++) {
+//            printf("%d ", *(*(p+1)+1));  // 等价于 arr[i][j] p[i][j]
+//    //    }
+//    //    printf("\n");
+//    //}
+//
+//    return 0;
+//}
+//#include <stdio.h>
+//
+//int main() {
+//    int arr[2][3][4] = {
+//        { {1,2,3,4}, {5,6,7,8}, {9,10,11,12} },
+//        { {13,14,15,16}, {17,18,19,20}, {21,22,23,24} }
+//    };
+//    int (*p)[3][4] = arr;  // 指向第一"层"的数组指针
+//
+//    printf("三维数组遍历：\n");
+//    for (int i = 0; i < 2; i++) {  // 层
+//        for (int j = 0; j < 3; j++) {  // 行
+//            for (int k = 0; k < 4; k++) {  // 列
+//                printf("%d ", p[i][j][k]);  // 等价于 arr[i][j][k]
+//            }
+//            printf("\n");
+//        }
+//        printf("\n");
+//    }
+//
+//    return 0;
+//}\
+//
+/***********************************结构体**************************/
+//struct jiegouti//正常类型
+//{
+//    char zifu;
+//    int nian;
+//    double xiaoshu;
+//}s1，s2;//s1是一个生成的结构体名，可以多个
+//struct //不完全声明类型，没有这个，就不能在其他地方创建结构体，一般只能用一次
+//{
+//    char zifu;
+//    int nian;
+//    double xiaoshu;
+//}s1，s2;//s1是一个生成的结构体名，可以多个
+//struct s
+//{
+//    char zifu;//数据
+//    struct s* x1;//找到下一个同类型的结构体struct s x1这样不行
+//};
+//typedef struct scct//将struct scct重命名为ss
+//{
+//    char zifu;//数据
+//    struct s* x1;//找到下一个同类型的结构体struct s x1这样不行
+//}ss;
+//typedef struct ss
+//{
+//    int data;
+////    Node* next;//不能这样写，这个Node是顺序在最后生成的
+// struct ss* next;
+//}Node;
+
+#include <stddef.h>//求结构体对齐
+struct S1
 {
-    int arr[3] = { 1,2,3 };
-    int* p1= arr;
-    printf("%d\n", *(arr+1));
-    printf("%d", p1);
+    char c1;
+    int i;
+    char c2;
+};
+//练习2
+struct S2
+{
+    char c1;
+    char c2;
+    int i;
+};//第一个元素偏移值为0，VS默认对齐是8(意思是超过8字节都按8字节对齐处理)，小于等于8字节按照最大类型对齐
+//变量类型字节必须是偏移字节的整数倍。
+//最后一个要补位，结构体的总大小是最大类型的整数倍（比如24字节（23））。
+//小的数据类型写在上面，大的写下面，更省  空间
+struct S3
+{
+    double i;
+    char j;
+    char k;
+    double n;
+    int o;
+};
+int main()
+{
+
+    printf("%d\n", sizeof(struct S3));
+    printf("%d\n", offsetof(struct S1,c1));
+    printf("%d\n", offsetof(struct S1,i));
+    printf("%d\n", offsetof(struct S1,c2));
+    //练习2
+    //printf("%d\n", sizeof(struct S2));
 }
+
