@@ -1633,39 +1633,84 @@ int main()
 // struct ss* next;
 //}Node;
 
-#include <stddef.h>//求结构体对齐
-struct S1
+//#include <stddef.h>//求结构体对齐
+//#pragma pack(1)//修改对齐数，默认是8
+//struct S1//这种不节省空间
+//{
+//    char c1;
+//    int i;
+//    char c2;
+//};
+////练习2
+//struct S2//较小的字节定义放在一起，更节省空间
+//{
+//    char c1;
+//    char c2;
+//    int i;
+//};//第一个元素偏移值为0，VS默认对齐是8(意思是超过8字节都按8字节对齐处理)，小于等于8字节按照最大类型对齐
+////变量类型字节必须是偏移字节的整数倍。
+////最后一个要补位，结构体的总大小是最大类型的整数倍（比如24字节（23））。
+////小的数据类型写在上面，大的写下面，更省  空间
+//struct S5
+//{
+//    double i;
+//    char j;
+//    char k;
+//    double n;
+//    int o;
+//    struct S5* hui;//S3所占空间大小，对齐为，S3变量最大变量所占字节，不是S4中的对齐
+//    //struct S3* hui;//可以
+//    //struct S3 hui;//可以
+//    //struct S5 hui;//不行
+//};
+////默认对齐值：8 字节（64 位系统）
+////实际对齐值：取成员自身大小 和 默认对齐值中的较小值
+//int main()
+//{
+//
+//    printf("%zd\n", sizeof(struct S2));
+//    //printf("%d\n", offsetof(struct S1,c1));
+//    //printf("%d\n", offsetof(struct S1,i));
+//    //printf("%d\n", offsetof(struct S1,c2));
+//    //练习2
+//    //printf("%d\n", sizeof(struct S2));
+//}
+
+//struct S
+//{
+//    int a;
+//    char d;
+//    double i;
+//};
+//void print1(struct S s)
+//{
+//    printf("%d\n", s.a);
+//}
+////结构体地址传参
+//void print2(struct S* ps)
+//{
+//    printf("%c\n", ps->d);
+//}
+//int main()
+//{
+//    //struct s1 s = { {3},{3},{3},{'w'},{3.14} };
+//    struct S s = { 0 };
+//    s.a = 1;
+//    s.d = 'w';
+//    s.i = 3.14;
+//    print1(s);
+//    print2(&s);
+//    printf("%.2f ", s.i);
+//
+//}
+
+
+struct S//位段
 {
-    char c1;
-    int i;
-    char c2;
+    int a:2;//2为比特位，最大不能超过本身大小
+    char d:8;
 };
-//练习2
-struct S2
-{
-    char c1;
-    char c2;
-    int i;
-};//第一个元素偏移值为0，VS默认对齐是8(意思是超过8字节都按8字节对齐处理)，小于等于8字节按照最大类型对齐
-//变量类型字节必须是偏移字节的整数倍。
-//最后一个要补位，结构体的总大小是最大类型的整数倍（比如24字节（23））。
-//小的数据类型写在上面，大的写下面，更省  空间
-struct S3
-{
-    double i;
-    char j;
-    char k;
-    double n;
-    int o;
-};
-int main()
+int main() 
 {
 
-    printf("%d\n", sizeof(struct S3));
-    printf("%d\n", offsetof(struct S1,c1));
-    printf("%d\n", offsetof(struct S1,i));
-    printf("%d\n", offsetof(struct S1,c2));
-    //练习2
-    //printf("%d\n", sizeof(struct S2));
 }
-
