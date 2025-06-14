@@ -1705,12 +1705,39 @@ int main()
 //}
 
 
-struct S//位段
-{
-    int a:2;//2为比特位，最大不能超过本身大小
-    char d:8;
-};
-int main() 
-{
+//struct S//位段成员只能是整数
+//{
+//    int a:2;//2为比特位，最大不能超过本身大小
+//    char d:8;
+//};
+//int main() 
+//{
 
+//}
+
+
+//enum op//枚举第一个值默认从0开始，后面变量默认++
+//{
+//    a = 3,b,c=1,d
+//
+//};//枚举里面的枚举常量
+//int main()
+//{
+//   // int a = 3;
+//    printf("%d", d);
+//}
+union s//联合体，又叫共用体，最大成员所占字节的大小就是联合体的大小
+{
+    char i[5];
+    int j;
+};//联合体对齐，w为联合体内最大对齐数的整数倍
+int main()
+{
+    union s s = { 0 };
+    s.i[0] = 2;
+    s.j = 3;
+    printf("%d\n", (int)sizeof(union s));
+    printf("%p\n", &s);
+    printf("%p\n", &(s.i));
+    printf("%p\n", &(s.j));
 }
